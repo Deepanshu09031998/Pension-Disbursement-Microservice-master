@@ -46,7 +46,7 @@ namespace PensionDisbursement.Controllers
             if (pensionerDetail == null)
                 return 21;
 
-            int status = 0;
+            int processPensionStatusCode = 0;
             int bankServiceCharge;
             if (pension.BankType == 1)
                 bankServiceCharge = 500;
@@ -59,13 +59,13 @@ namespace PensionDisbursement.Controllers
 
             if (Convert.ToDouble(pension.PensionAmount) == pensionCalculated)
             {
-                status = 10;
+                processPensionStatusCode = 10;
             }
             else
             {
-                status = 21;
+                processPensionStatusCode = 21;
             }
-            return status;
+            return processPensionStatusCode;
             
         }
         /// <summary>
