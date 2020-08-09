@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace PensionDisbursement
+﻿namespace PensionDisbursement
 {
     public class PensionerDetail
     {
-        
+
         public int Allowances { get; set; }
         public int SalaryEarned { get; set; }
         public PensionType PensionType { get; set; }
@@ -15,7 +10,7 @@ namespace PensionDisbursement
 
     public enum PensionType
     {
-        Self=1,
+        Self = 1,
         Family = 2
     }
 

@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System;
 
 
 //change get to post
@@ -45,8 +38,6 @@ namespace PensionDisbursement.Controllers
 
             if (pensionerDetail == null)
                 return 21;
-
-            int processPensionStatusCode = 0;
             int bankServiceCharge;
             if (pension.BankType == 1)
                 bankServiceCharge = 500;
@@ -57,6 +48,8 @@ namespace PensionDisbursement.Controllers
             double pensionCalculated;
             pensionCalculated = CalculatePensionLogic(pensionerDetail.SalaryEarned, pensionerDetail.Allowances, bankServiceCharge, pensionerDetail.PensionType);
 
+
+            int processPensionStatusCode;
             if (Convert.ToDouble(pension.PensionAmount) == pensionCalculated)
             {
                 processPensionStatusCode = 10;
@@ -66,7 +59,7 @@ namespace PensionDisbursement.Controllers
                 processPensionStatusCode = 21;
             }
             return processPensionStatusCode;
-            
+
         }
         /// <summary>
         /// Validating the Pension Amount
@@ -76,7 +69,7 @@ namespace PensionDisbursement.Controllers
         /// <param name="charge"></param>
         /// <param name="type"></param>
         /// <returns>validated pension amount</returns>
-        private double CalculatePensionLogic(int salaryEarned,int allowances,int charge,PensionType type)
+        private double CalculatePensionLogic(int salaryEarned, int allowances, int charge, PensionType type)
         {
             if (type == PensionType.Self)
             {
@@ -88,7 +81,7 @@ namespace PensionDisbursement.Controllers
             }
 
         }
-        
+
 
     }
 }
